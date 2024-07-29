@@ -5,7 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, Seq2SeqTrainingAr
 from transformers import DataCollatorForSeq2Seq
 
 # Загрузка данных из JSON-файла
-with open('ds.json', 'r') as f:
+with open('../dataset/ds.json', 'r') as f:
     data = json.load(f)
 
 # Преобразование данных в DataFrame, а затем в Dataset
@@ -33,7 +33,7 @@ training_args = Seq2SeqTrainingArguments(
     learning_rate=2e-5,
     per_device_train_batch_size=16,  # Уменьшено для примера
     per_device_eval_batch_size=16,
-    num_train_epochs=500,
+    num_train_epochs=300,
     weight_decay=0.01,
     save_total_limit=3,
     predict_with_generate=True,

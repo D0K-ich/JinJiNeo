@@ -1,18 +1,17 @@
 [
   {
-    "context": "Франция — это страна в Западной Европе. Её столица — Париж, который известен своими музеями и архитектурными памятниками.",
-    "question": "Какова столица Франции?",
-    "answers": {
-      "text": ["Париж"],
-      "answer_start": [35]
-    }
+    "context": "Paris is the capital city of France. It is known for its art, culture, and cuisine.",
+    "question": "What is the capital of France?",
+    "answer": "Paris"
   },
   {
-    "context": "Лев Толстой написал роман 'Война и мир', который описывает российское общество во время наполеоновских войн.",
-    "question": "Кто написал роман 'Война и мир'?",
-    "answers": {
-      "text": ["Лев Толстой"],
-      "answer_start": [0]
-    }
+    "context": "The Eiffel Tower is a wrought-iron lattice tower in Paris, named after the engineer Gustave Eiffel.",
+    "question": "What is a famous landmark in Paris?",
+    "answer": "The Eiffel Tower"
+  },
+  {
+    "context": "Dok Sanches live in Russian. He is cool proger",
+    "question": "Who is Dok Sanches?",
+    "answer": "cool proger"
   }
 ]
