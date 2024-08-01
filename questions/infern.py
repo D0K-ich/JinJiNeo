@@ -1,26 +1,37 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import GPT2LMHeadModel, GPT2Tokenizer, AutoModelForCausalLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
+import torch
 
-# Загрузка обученной модели и токенизатора
-model_path = "../model"
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_path).to('cuda')
+# Загрузка предобученной модели и токенизатора
+model_name = "../model-trained"  # Можно использовать "t5-base" или "t5-large" для более мощных моделей
+tokenizer = T5Tokenizer.from_pretrained(model_name)
+model = T5ForConditionalGeneration.from_pretrained(model_name)
 
-def answer_question(question):
-    input_text = f"question: {question}"
-    inputs = tokenizer(input_text, return_tensors="pt", max_length=512, truncation=True).to('cuda')
-    outputs = model.generate(**inputs)
-    answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return answer
+# Использование CUDA, если доступно
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
 
-# Примеры использования
+def generate_answer(question, max_length=128, num_beams=3):
+
+    input_text = f"question: {question} context: "
+    input_ids = tokenizer(input_text, return_tensors="pt").input_ids.to(device)
+
+    try:
+        # Генерация ответа
+        outputs = model.generate(input_ids, max_length=max_length, num_beams=num_beams, early_stopping=True)
+        answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return answer
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
+# Пример использования функции с несколькими вопросами
 questions = [
     "What is the capital of France?",
-    "What is a famous landmark in Paris?",
-    "Who is Putin?"
+    "Who wrote 'Hamlet'?",
+    "What is the speed of light?",
+    "Who is Dok Sanches?",
 ]
 
-# Получение и вывод ответов
 for question in questions:
-    answer = answer_question(question)
-    print(f"Question: {question}")
-    print(f"Answer: {answer}\n")
+    answer = generate_answer(question)
+    print(f"Q: {question}")
+    print(f"A: {answer}\n")
