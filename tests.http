@@ -1,9 +1,22 @@
 ### GET request to example server
-POST http://127.0.0.1:5000/send-message
+POST http://127.0.0.1:5000/new-question
 Content-Type: application/json
 
 {
-  "data": "data1"
+  "question" : "What is light speed?"
+}
+
+###
+
+POST http://127.0.0.1:5000/load-model
+Content-Type: application/json
+
+{
+  "settings": {
+    "temperature": 0.8,
+    "max_lenght": 256,
+    "beams": 3
+  }
 }
 
 ###

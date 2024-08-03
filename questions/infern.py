@@ -28,7 +28,7 @@ questions = [
     "What is the capital of France?",
     "Who wrote 'Hamlet'?",
     "What is the speed of light?",
-    "Who is Dok Sanches?",
+    "Сколько страниц в книге Война и мир?",
 ]
 
 for question in questions:
