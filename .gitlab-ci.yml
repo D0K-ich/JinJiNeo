@@ -11,4 +11,4 @@ build:
 test:
   stage: test
   script:
-    - python
+    - python ./test.py
