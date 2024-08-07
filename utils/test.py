@@ -25,7 +25,6 @@ def generate_answer(question):
     answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return answer
 
-# Пример использования
 question = "What is the capital of France?"
 answer = generate_answer(question)
 print(f"Answer: {answer}")
