@@ -1,14 +1,11 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Загрузка модели и токенизатора
-model_name = '../model'
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model_name  = '../model'
+tokenizer   = AutoTokenizer.from_pretrained(model_name)
+model       = AutoModelForCausalLM.from_pretrained(model_name)
 
-# Функция для генерации ответа на вопрос
 tokenizer.pad_token = tokenizer.eos_token
 
-# Функция для генерации ответа на вопрос
 def generate_answer(question):
     inputs = tokenizer.encode(question, return_tensors='pt')
     outputs = model.generate(

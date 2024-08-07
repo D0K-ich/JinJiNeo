@@ -1,0 +1,19 @@
+image: python:3.10
+
+before_script:
+  - CHCP 65001
+  - go version
+  - go env
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script: echo "Define your deployment script!"
+
+test:
+  stage: test
+  script:
+    - python
