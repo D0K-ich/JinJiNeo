@@ -1,10 +1,5 @@
 image: python:3.10
 
-before_script:
-  - CHCP 65001
-  - go version
-  - go env
-
 stages:
   - build
   - test
